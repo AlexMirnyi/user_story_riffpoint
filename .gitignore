@@ -6,7 +6,6 @@ nbproject/
 /vendor
 /app/cache
 /app/logs
-/app/config
 /app/loaders/logs
 /app/bootstrap*
 /data

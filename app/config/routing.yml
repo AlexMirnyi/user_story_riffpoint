@@ -1,0 +1,19 @@
+index_page:
+    path:      /
+    defaults:  { _controller: AppMainBundle:Index:index }
+
+app_main:
+    resource: "@AppMainBundle/Controller"
+    type:     annotation
+    prefix:   /
+
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+
