@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="ru" datatype="plaintext" original="">
+        <body>
+            <trans-unit id="app.main_bundle_author">
+                <source>app.main_bundle_author</source>
+                <target>Автор</target>
+            </trans-unit>
+            <trans-unit id="app.main_bundle_book">
+                <source>app.main_bundle_book</source>
+                <target>Книга</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

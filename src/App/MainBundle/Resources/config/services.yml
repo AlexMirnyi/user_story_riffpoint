@@ -1,0 +1,74 @@
+services:
+     main.author.repository:
+          class: App\MainBundle\Repository\AuthorRepository
+          factory_service: doctrine.orm.entity_manager
+          factory_method: getRepository
+          arguments:
+              - 'AppMainBundle:Author'
+
+     main.book.repository:
+          class: App\MainBundle\Repository\BookRepository
+          factory_service: doctrine.orm.entity_manager
+          factory_method: getRepository
+          arguments:
+              - 'AppMainBundle:Book'
+
+     main.genre.repository:
+          class: App\MainBundle\Repository\GenreRepository
+          factory_service: doctrine.orm.entity_manager
+          factory_method: getRepository
+          arguments:
+             - 'AppMainBundle:Genre'
+
+     main.publisher.repository:
+          class: App\MainBundle\Repository\PublisherRepository
+          factory_service: doctrine.orm.entity_manager
+          factory_method: getRepository
+          arguments:
+              - 'AppMainBundle:Publisher'
+
+     app_main.admin.author:
+          class: App\MainBundle\Admin\AuthorAdmin
+          arguments: [~, App\MainBundle\Entity\Author, SonataAdminBundle:CRUD]
+          tags:
+              - {name: sonata.admin, manager_type: orm, group: User Stories, label: Авторы, label_translator_strategy:"sonata.admin.label.strategy.bc", label_catalogue:AppMainBundle }
+          calls:
+              - [setTranslationDomain, [AppMainBundle]]
+
+     app_main.admin.book:
+          class: App\MainBundle\Admin\BookAdmin
+          arguments: [~, App\MainBundle\Entity\Book, SonataAdminBundle:CRUD]
+          tags:
+              - {name: sonata.admin, manager_type: orm, group: User Stories, label: Книги, label_translator_strategy:"sonata.admin.label.strategy.bc", label_catalogue:AppMainBundle }
+          calls:
+              - [setTranslationDomain, [AppMainBundle]]
+
+     app_main.admin.genre:
+          class: App\MainBundle\Admin\GenreAdmin
+          arguments: [~, App\MainBundle\Entity\Genre, SonataAdminBundle:CRUD]
+          tags:
+              - {name: sonata.admin, manager_type: orm, group: User Stories, label: Жанр, label_translator_strategy:"sonata.admin.label.strategy.bc", label_catalogue:AppMainBundle }
+          calls:
+              - [setTranslationDomain, [AppMainBundle]]
+
+     app_main.admin.publisher:
+          class: App\MainBundle\Admin\PublisherAdmin
+          arguments: [~, App\MainBundle\Entity\Publisher, SonataAdminBundle:CRUD]
+          tags:
+              - {name: sonata.admin, manager_type: orm, group: User Stories, label: Издана, label_translator_strategy:"sonata.admin.label.strategy.bc", label_catalogue:AppMainBundle }
+          calls:
+              - [setTranslationDomain, [AppMainBundle]]
+
+     app_main_bundle.form.book:
+          class: Symfony\Component\Form\Form
+          factory_method: 'createNamed'
+          factory_service: form.factory
+          arguments:
+              - 'app_main_bundle_bookt'
+              - @app_main_bundle.book.form.type
+              - null
+
+     app_main_bundle.book.form.type:
+         class: App\MainBundle\Form\Type\SearchFormType
+         tags:
+             - { name: form.type, alias: app_main_bundle_book }

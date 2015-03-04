@@ -1,0 +1,50 @@
+{% extends 'AppMainBundle::base.html.twig' %}
+
+{% block main_content %}
+    <div>
+        <nav>
+            <ul class="pagination">
+                {% for page in pages %}
+                    <li>
+                        <a id={{ page }} href="#">{{ page }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    <div class="table-responsive">
+        <form name="form" action="{{ path("main_page") }}" method="post" style="width: 40%;">
+            <div>
+                {{ form_row(form.authors) }}
+            </div>
+            <div>
+                {{ form_row(form.isbn) }}
+            </div>
+            <div>
+                {{ form_row(form.title) }}
+            </div>
+            <div>
+                {{ form_row(form.genre) }}
+            </div>
+            <div>
+                <input class="btn btn-success" type="submit" value="Фильтровать"/>
+                <a class="btn btn btn-danger" href ="{{path("main_page") }}">Сбросить</a>
+            </div>
+        </form>
+        <table id="table" class="table">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th id="name_header" style="cursor: pointer;">Автор</th>
+                <th>ISBN</th>
+                <th id="title_header" style="cursor: pointer;">Книга</th>
+                <th id="genre_header" style="cursor: pointer;">Жанр</th>
+                <th>Издана</th>
+            </tr>
+            </thead>
+            <tbody id="content">
+                {% include "AppMainBundle:index:table.html.twig" with { 'books': books } %}
+            </tbody>
+        </table>
+    </div>
+{% endblock main_content %}

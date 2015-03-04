@@ -1,0 +1,18 @@
+{% for b in books %}
+    <tr>
+        <td>{{ loop.index + (page * offset) }}</td>
+        <td>
+            {% for author in b.authors %}
+                {% if loop.last %}
+                    {{ author }}
+                {% else %}
+                    {{ author }},
+                {% endif %}
+            {% endfor %}
+        </td>
+        <td>{{ b.isbn }}</td>
+        <td>{{ b.title }}</td>
+        <td>{{ b.genre }}</td>
+        <td>{{ b.published }}</td>
+    </tr>
+{% endfor %}
